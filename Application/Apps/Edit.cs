@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using Domain;
+using FluentValidation;
 using MediatR;
 using Persistence;
 
@@ -12,6 +13,14 @@ namespace Application.Apps
         public class Command : IRequest
         {
             public App App { get; set; }
+        }
+        
+        public class CommandValidator : AbstractValidator<Command>
+        {
+            public CommandValidator()
+            {
+                RuleFor(x => x.App).SetValidator(new AppValidator());
+            }
         }
         
         public class Handler : IRequestHandler<Command>
