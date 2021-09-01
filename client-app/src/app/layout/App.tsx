@@ -6,10 +6,15 @@ import { observer } from 'mobx-react-lite';
 import { Route, Switch } from 'react-router';
 import HomePage from '../../features/home/HomePage';
 import ApplicationDetails from '../../features/applications/details/ApplicationDetails';
+import TestErrors from '../../features/errors/TestError';
+import { ToastContainer } from 'react-toastify';
+import NotFound from '../../features/errors/NotFound';
+import ServerError from '../../features/errors/ServerError';
 
 function App() {
   return (
     <>
+      <ToastContainer position='bottom-right' hideProgressBar />
       <Route exact path='/' component={HomePage} />
       <Route
         path={'/(.+)'}
@@ -20,6 +25,9 @@ function App() {
               <Switch>
                 <Route exact path='/apps' component={ApplicationDashboard} />
                 <Route path='/apps/:id' component={ApplicationDetails} />
+                <Route path='/errors' component={TestErrors} />
+                <Route path='/server-error' component={ServerError} />
+                <Route component={NotFound} />
               </Switch>
             </Container>
           </>

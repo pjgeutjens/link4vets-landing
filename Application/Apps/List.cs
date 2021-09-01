@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Core;
 using Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -10,12 +11,12 @@ namespace Application.Apps
 {
     public class List
     {
-        public class Query : IRequest<List<App>>
+        public class Query : IRequest<Result<List<App>>>
         {
             
         } 
         
-        public class Handler : IRequestHandler<Query, List<App>>
+        public class Handler : IRequestHandler<Query, Result<List<App>>>
         {
             private readonly DataContext _context;
 
@@ -23,9 +24,9 @@ namespace Application.Apps
             {
                 _context = context;
             }
-            public async Task<List<App>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<List<App>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await _context.Apps.ToListAsync(cancellationToken);
+                return Result<List<App>>.Success(await _context.Apps.ToListAsync(cancellationToken));
             }
         }
     }

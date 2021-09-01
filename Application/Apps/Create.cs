@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using Application.Core;
 using Domain;
 using FluentValidation;
 using MediatR;
@@ -9,7 +10,7 @@ namespace Application.Apps
 {
     public class Create
     {
-        public class Command : IRequest
+        public class Command : IRequest<Result<Unit>>
         {
             public App App { get; set; }
         }
@@ -22,7 +23,7 @@ namespace Application.Apps
             }
         }
 
-        public class Handler : IRequestHandler<Command>
+        public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext _context;
 
@@ -31,12 +32,14 @@ namespace Application.Apps
                 _context = context;
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 _context.Apps.Add(request.App);
-                await _context.SaveChangesAsync();
+                var result = await _context.SaveChangesAsync() > 0;
                 
-                return  Unit.Value;
+                if (!result) return Result<Unit>.Failure("Failed to create App");
+                
+                return  Result<Unit>.Success(Unit.Value);
             }
         }
     }
