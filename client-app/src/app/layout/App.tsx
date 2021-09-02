@@ -10,6 +10,7 @@ import TestErrors from '../../features/errors/TestError';
 import { ToastContainer } from 'react-toastify';
 import NotFound from '../../features/errors/NotFound';
 import ServerError from '../../features/errors/ServerError';
+import FeedbackForm from '../../features/feedback/FeedbackForm';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
               <Switch>
                 <Route exact path='/apps' component={ApplicationDashboard} />
                 <Route path='/apps/:id' component={ApplicationDetails} />
+                <Route path='/feedback' component={FeedbackForm} />
                 <Route path='/errors' component={TestErrors} />
                 <Route path='/server-error' component={ServerError} />
                 <Route component={NotFound} />
