@@ -11,7 +11,7 @@ const HomePage = () => {
                         Link4Vets
                     </Header>
                     <Header as='h2' inverted content='Welcome to Link4Vets' />
-                    <Button as={Link} to='/apps' size='huge' inverted>Dashboard</Button>
+                    <Button as={Link} to='/login' size='huge' inverted>Login</Button>
                 </Container>
             </Segment>
     )
