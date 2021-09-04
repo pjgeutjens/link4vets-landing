@@ -2,12 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Item, Label, Segment } from 'semantic-ui-react'
 import { Application } from '../../../app/models/app'
+import { useStore } from '../../../app/stores/store'
 
 interface Props {
     app: Application
 }
 
 export default function ApplicationListItem({ app }: Props) {
+    const {appStore: {setSelectedapp}} = useStore()
     return (
         <Segment.Group>
             <Segment>
@@ -20,7 +22,7 @@ export default function ApplicationListItem({ app }: Props) {
                         >
                             External
                         </Label>}
-                        <Item.Image size='tiny' circular src={`/assets/categoryImages/${app.category}.jpg`} />
+                        <Item.Image size='tiny' avatar src={`/assets/categoryImages/${app.category}.jpg`} />
                         <Item.Content>
                             <Item.Header as={Link} to={`/apps/${app.id}`}>{app.displayName}</Item.Header>
                             <Item.Description>{app.category}</Item.Description>
@@ -31,15 +33,10 @@ export default function ApplicationListItem({ app }: Props) {
             <Segment clearing>
                 <span>{app.description}</span>
                 <Button.Group floated='right'>
+                <Button onClick={() => setSelectedapp(app)} floated='right' content='Details' color='green' />
                     <Button
                         as={Link}
-                        to={`/apps/${app.id}`}
-                        color='teal'
-                        floated='right'
-                        content='Details'
-                    />
-                    <Button
-                        as={Link}
+                        target="_blank"
                         to={{ pathname: app.baseUrl }}
                         color='blue'
                         floated='right'

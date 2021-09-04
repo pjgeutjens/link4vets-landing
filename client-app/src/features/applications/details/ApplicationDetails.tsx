@@ -22,19 +22,12 @@ export default observer(function ApplicationDetails() {
             <Image src={`/assets/categoryImages/${app.category}.jpg`} />
             <Card.Content>
                 <Card.Header>{app.displayName}</Card.Header>
-                <Card.Meta>
-                    <span>{app.category}</span>
-                </Card.Meta>
                 <Card.Description>
                     {app.description}
                 </Card.Description>
             </Card.Content>
             <Card.Content extra>
-                <>
-                    <Icon name='heart' />
-                    22 Likes
-                </>
-                <Button floated='right' basic as={Link} to={'/apps'} content='Cancel' />
+                <span>{app.category}</span>
             </Card.Content>
         </Card>
     )

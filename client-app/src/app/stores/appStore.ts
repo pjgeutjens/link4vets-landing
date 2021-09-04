@@ -23,6 +23,7 @@ export default class AppStore {
             apps.forEach(app => {
                 this.appsRegistry.set(app.id, app);
             })
+            this.setSelectedapp(this.apps[0])
             this.setLoadingInitial(false);
 
         } catch (error) {
