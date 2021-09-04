@@ -19,7 +19,7 @@ export default observer(function ApplicationDetails() {
 
     return (
         <Card fluid>
-            <Image src={`/assets/categoryImages/${app.category}.jpg`} />
+            <Image src={`/assets/categoryImages/${app.category.toLowerCase()}.jpg`} />
             <Card.Content>
                 <Card.Header>{app.displayName}</Card.Header>
                 <Card.Description>

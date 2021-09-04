@@ -9,5 +9,6 @@ namespace Domain
         public string Bio { get; set; }
         public string UniqueId { get; set; }
         public ICollection<Photo> Photos { get; set; }
+        public ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
     }
 }

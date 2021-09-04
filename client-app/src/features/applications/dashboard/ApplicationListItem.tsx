@@ -22,7 +22,7 @@ export default function ApplicationListItem({ app }: Props) {
                         >
                             External
                         </Label>}
-                        <Item.Image size='tiny' avatar src={`/assets/categoryImages/${app.category}.jpg`} />
+                        <Item.Image size='tiny' avatar src={`/assets/categoryImages/${app.category.toLowerCase()}.jpg`} />
                         <Item.Content>
                             <Item.Header as={Link} to={`/apps/${app.id}`}>{app.displayName}</Item.Header>
                             <Item.Description>{app.category}</Item.Description>
@@ -47,7 +47,7 @@ export default function ApplicationListItem({ app }: Props) {
             </Segment>
 
             <Segment secondary>
-                <span>22 Likes</span>
+                <span>23 Likes</span>
             </Segment>
         </Segment.Group>
     )
