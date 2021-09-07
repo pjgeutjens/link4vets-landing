@@ -2,6 +2,8 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { history } from '../..';
 import { Application } from '../models/app';
+import { Contact, ContactFormValues } from '../models/contact';
+import { PaginatedResult } from '../models/pagination';
 import { Photo, Profile } from '../models/profile';
 import { User, UserFormValues } from '../models/User';
 import { store } from '../stores/store';
@@ -14,6 +16,11 @@ const sleep = (delay: number) => {
 
 axios.interceptors.response.use(async response => {
     if (process.env.NODE_ENV === 'development') await sleep(1000);
+    const pagination = response.headers["pagination"]
+    if (pagination) {
+        response.data = new PaginatedResult(response.data, JSON.parse(pagination))
+        return response as AxiosResponse<PaginatedResult<any>>
+    }
     return response;
 }, (error: AxiosError) => {
     const { data, status, config, headers } = error.response!;
@@ -93,10 +100,21 @@ const Profiles = {
     deletePhoto: (id: string) => requests.del(`/photos/${id}`)
 }
 
+const Contacts = {
+    list: (params: URLSearchParams) => axios.get<PaginatedResult<Contact[]>>('/contacts', {params})
+            .then(responseBody),
+    details: (id:string) => requests.get<Contact>(`/contacts/${id}`),
+    create: (contact:ContactFormValues) => requests.post<void>(`/contacts`, contact),
+    update: (contact:ContactFormValues) => requests.put<void>(`/contacts/${contact.id}`, contact),
+    delete: (id:string) => requests.del<void>(`/contacts/${id}`),
+    favorite: (id:string) => requests.post<void>(`/contacts/${id}/favorite`, {})
+}
+
 const agent = {
     Applications,
     Account,
-    Profiles
+    Profiles,
+    Contacts
 }
 
 export default agent;

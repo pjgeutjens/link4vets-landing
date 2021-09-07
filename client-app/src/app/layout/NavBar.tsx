@@ -14,6 +14,7 @@ export default observer(function NavBar() {
                     Link4Vets
                 </Menu.Item>
                 <Menu.Item as={NavLink} to='/apps' name="Apps" />
+                <Menu.Item as={NavLink} to='/contacts' name="Contacts" />
                 <Menu.Item as={NavLink} to='/errors' name="Errors" />
                 <Menu.Item as={NavLink} to='/feedback' name="Feedback" />
                 <Menu.Item position='right'>

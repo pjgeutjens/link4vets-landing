@@ -16,6 +16,7 @@ import LoadingComponent from './LoadingComponent';
 import ModalContainer from '../common/modals/ModalContainer';
 import ProfilePage from '../../features/profiles/ProfilePage';
 import PrivateRoute from './PrivateRoute';
+import ContactDashboard from '../../features/contacts/dashboard/ContactDashboard';
 
 function App() {
   const {commonStore, userStore} = useStore();
@@ -44,6 +45,7 @@ function App() {
             <Container style={{ marginTop: '7em' }}>
               <Switch>
                 <PrivateRoute exact path='/apps' component={ApplicationDashboard} />
+                <PrivateRoute exact path='/Contacts' component={ContactDashboard} />
                 <PrivateRoute path='/apps/:id' component={ApplicationDetails} />
                 <PrivateRoute path='/profiles/:userName' component={ProfilePage} />
                 <PrivateRoute path='/feedback' component={FeedbackForm} />

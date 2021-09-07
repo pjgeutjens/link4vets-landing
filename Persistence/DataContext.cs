@@ -12,5 +12,6 @@ namespace Persistence
 
         public DbSet<App> Apps { get; set; }
         public DbSet<Photo> Photos { get; set;  }
+        public DbSet<Contact> Contacts { get; set; }
     }
 }
