@@ -15,7 +15,6 @@ import { categoryOptions } from '../../../app/common/options/categoryOptions'
 import MyDateInput from '../../../app/common/form/MyDateInput'
 import { ContactFormValues } from '../../../app/models/contact'
 
-
 export default observer(function ContactForm() {
     const history = useHistory();
     const { contactStore } = useStore();

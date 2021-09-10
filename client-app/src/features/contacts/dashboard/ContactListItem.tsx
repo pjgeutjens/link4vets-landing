@@ -31,8 +31,13 @@ export default function ContactListItem({ contact }: Props) {
                 </Item.Group>
             </Segment>
             <Segment>
+                <span>  { contact.address } <br/>
+                        { contact.zip }, {contact.city} <br/>
+                        { contact.country} </span>
+            </Segment>
+            <Segment>
                 <span>
-                    <Icon name='clock' />{ format(contact.createdAt!, 'dd MMM yyyy h:mm aa') }
+                    <Icon name='envelope' />{ contact.email }
                 </span>
             </Segment>
         </Segment.Group>

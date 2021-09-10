@@ -15,6 +15,7 @@ export default class ContactStore {
     pagination: Pagination | null = null;
     pagingParams = new PagingParams();
     predicate = new Map().set('all', true);
+    searchString = "";
 
     constructor() {
         makeAutoObservable(this)
@@ -50,6 +51,10 @@ export default class ContactStore {
                 this.predicate.set('isNew', true);
                 break;
         }
+    }
+
+    setSearchString = (searchString: string) => {
+        this.searchString = searchString;
     }
 
     get axiosParams() {

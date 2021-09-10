@@ -10,11 +10,9 @@ export default observer(function ContactList() {
 
     return (
         <>
+            <Header color='teal' content="Contact List" />
             {groupedContacts.map(([group, contacts]) => (
                 <Fragment key={group}>
-                    <Header color='teal'>
-                        {group}
-                    </Header>
                     {contacts.map(contact => (
                         <ContactListItem contact={contact} key={contact.id} />
                     ))}

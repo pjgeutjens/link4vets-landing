@@ -22,10 +22,10 @@ export default observer(function ContactFilters() {
             />
         </Menu>
         <Header />
-        <Calendar 
+        {/* <Calendar 
             onChange={(date: any) => setPredicate('createdAt', date as Date)}
             value={predicate.get('createdAt') || new Date()}
-        />
+        /> */}
         </>
 
     )

@@ -7,6 +7,7 @@ import ContactFilters from './ContactFilters'
 import ContactList from './ContactList'
 import InfiniteScroll from 'react-infinite-scroller'
 import ContactListItemPlaceholder from './ContactListItemPlaceholder'
+import ContactSearch from './ContactSearch'
 
 export default observer(function ContactDashboard() {
     const { contactStore } = useStore();
@@ -45,6 +46,7 @@ export default observer(function ContactDashboard() {
             </Grid.Column>
             <Grid.Column width='6'>
                 <ContactFilters />
+                <ContactSearch />
             </Grid.Column>
             <Grid.Column width='10'>
                 <Loader active={loadingNext} />
