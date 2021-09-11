@@ -35,7 +35,6 @@ namespace API.Extensions
                         ValidateIssuer = false,
                         ValidateAudience = false,
                         ValidateLifetime = true,
-                        ClockSkew = TimeSpan.Zero
                     };
                 });
             services.AddScoped<TokenService>();
