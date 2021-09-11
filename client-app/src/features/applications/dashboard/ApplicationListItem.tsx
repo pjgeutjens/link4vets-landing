@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Button, Item, Label, Segment } from 'semantic-ui-react'
 import { Application } from '../../../app/models/app'
@@ -9,6 +10,7 @@ interface Props {
 }
 
 export default function ApplicationListItem({ app }: Props) {
+    const {t} = useTranslation()
     const {appStore: {setSelectedapp}} = useStore()
     return (
         <Segment.Group>
@@ -20,7 +22,7 @@ export default function ApplicationListItem({ app }: Props) {
                             color='orange'
                             ribbon='right'
                         >
-                            External
+                            {t('apps.external')}
                         </Label>}
                         <Item.Image size='tiny' avatar src={`/assets/categoryImages/${app.category.toLowerCase()}.jpg`} />
                         <Item.Content>
