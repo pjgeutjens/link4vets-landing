@@ -131,7 +131,7 @@ export default class ContactStore {
     }
 
     private setContact = (contact: Contact) => {
-        const user = store.userStore.user;
+      // const user = store.userStore.user;
       //   if (user) {
       //     contact.isFavorited = contact.favorited!.some(a => a.userName === user.userName);
           

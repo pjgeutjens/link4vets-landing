@@ -1,7 +1,5 @@
-import i18next from 'i18next';
 import { observer } from 'mobx-react-lite';
-import React, { ChangeEvent, SyntheticEvent } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { SyntheticEvent } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Container, Dropdown, Image, Menu } from 'semantic-ui-react';
 import i18n from '../../i18n';
@@ -9,7 +7,6 @@ import { useStore } from '../stores/store';
 
 export default observer(function NavBar() {
     const { userStore: { user, logout } } = useStore()
-    const {t} = useTranslation();
     const languageOptions = [
         { key: 'nl', text: 'NL', value: 'nl' },
         { key: 'en', text: 'EN', value: 'en' },

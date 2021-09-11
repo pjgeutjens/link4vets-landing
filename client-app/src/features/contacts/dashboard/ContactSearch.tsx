@@ -1,8 +1,7 @@
 import { Form, Formik } from 'formik'
 import { observer } from 'mobx-react-lite'
 import React, { useState } from 'react'
-import Calendar from 'react-calendar'
-import { Header, Menu, Select } from 'semantic-ui-react'
+import { Header, Select } from 'semantic-ui-react'
 import MyTextInput from '../../../app/common/form/MyTextInput'
 import { useStore } from '../../../app/stores/store'
 
