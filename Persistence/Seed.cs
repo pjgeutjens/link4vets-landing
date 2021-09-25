@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain;
+using Domain.Localization;
 using Microsoft.AspNetCore.Identity;
 
 namespace Persistence
@@ -28,41 +29,175 @@ namespace Persistence
                 }
             }
             
-            if (context.Apps.Any()) return;
-            
-            var activities = new List<App>
+            if (!context.Apps.Any())
             {
-                new App
+                var applications = new List<App>
                 {
-                    Name = "ContactList",
-                    DisplayName = "Contact List",
-                    Description = "A list of useful contacts",
-                    Category = "Listing",
-                    BaseUrl = "https://contacts.link4vetsportal.be",
-                    IsExternal = false,
-                },
-                new App
-                {
-                    Name = "RoadMap",
-                    DisplayName = "Road Map",
-                    Description = "A searchable database of information",
-                    Category = "Library",
-                    BaseUrl = "https://roadmap.link4vetsportal.be",
-                    IsExternal = false,
-                },
-                new App
-                {
-                    Name = "PuppyDatabase",
-                    DisplayName = "Puppy Database",
-                    Description = "The Link4Vets puppy database",
-                    Category = "Database",
-                    BaseUrl = "https://nestjes.link4vets.be",
-                    IsExternal = true,
-                },
-                
-            };
+                    new App
+                    {
+                        Name = "ContactList",
+                        DisplayName = new LocalizationSet
+                        {
+                            Id = new Guid(),
+                            Localizations = new List<Localization>
+                            {
+                                new()
+                                {
+                                    Culture = new Culture
+                                    {
+                                        Code = "nl-BE"
+                                    },
+                                    Value = "Contacten Lijst"
+                                },
+                                new()
+                                {
+                                    Culture = new Culture
+                                    {
+                                        Code = "en-US"
+                                    },
+                                    Value = "Contacts List"
+                                }
+                            }
+                        },
+                        Description = new LocalizationSet
+                        {
+                            Id = new Guid(),
+                            Localizations = new List<Localization>
+                            {
+                                new()
+                                {
+                                    Culture = new Culture
+                                    {
+                                        Code = "nl-BE"
+                                    },
+                                    Value = "Een lijst met nuttige contactinformatie"
+                                },
+                                new()
+                                {
+                                    Culture = new Culture
+                                    {
+                                        Code = "en-US"
+                                    },
+                                    Value = "A list of useful contact information"
+                                }
+                            }
+                        },
+                        Category = "Listing",
+                        BaseUrl = "https://contacts.link4vetsportal.be",
+                        IsExternal = false,
+                    },
+                    new App
+                    {
+                        Name = "RoadMap",
+                        DisplayName = new LocalizationSet
+                        {
+                            Id = new Guid(),
+                            Localizations = new List<Localization>
+                            {
+                                new Localization
+                                {
+                                    Culture = new Culture
+                                    {
+                                        Code = "nl-BE"
+                                    },
+                                    Value = "Wegwijzer"
+                                },
+                                new Localization
+                                {
+                                    Culture = new Culture
+                                    {
+                                        Code = "en-US"
+                                    },
+                                    Value = "Roadmap"
+                                }
+                            }
+                        },
+                        Description = new LocalizationSet
+                        {
+                            Id = new Guid(),
+                            Localizations = new List<Localization>
+                            {
+                                new Localization
+                                {
+                                    Culture = new Culture
+                                    {
+                                        Code = "nl-BE"
+                                    },
+                                    Value = "De link4vets Informatie Wegwijzer"
+                                },
+                                new Localization
+                                {
+                                    Culture = new Culture
+                                    {
+                                        Code = "en-US"
+                                    },
+                                    Value = "The Link4Vets Information Roadmap"
+                                }
+                            }
+                        },
+                        Category = "Library",
+                        BaseUrl = "https://roadmap.link4vetsportal.be",
+                        IsExternal = false,
+                    },
+                    new App
+                    {
+                        Name = "PuppyDatabase",
+                        DisplayName = new LocalizationSet
+                        {
+                            Id = new Guid(),
+                            Localizations = new List<Localization>
+                            {
+                                new Localization
+                                {
+                                    Culture = new Culture
+                                    {
+                                        Code = "nl-BE"
+                                    },
+                                    Value = "Puppy Databank"
+                                },
+                                new Localization
+                                {
+                                    Culture = new Culture
+                                    {
+                                        Code = "en-US"
+                                    },
+                                    Value = "Puppy Database"
+                                }
+                            }
+                        },
+                        Description = new LocalizationSet
+                        {
+                            Id = new Guid(),
+                            Localizations = new List<Localization>
+                            {
+                                new Localization
+                                {
+                                    Culture = new Culture
+                                    {
+                                        Code = "nl-BE"
+                                    },
+                                    Value = "De link4vets Puppy Database"
+                                },
+                                new Localization
+                                {
+                                    Culture = new Culture
+                                    {
+                                        Code = "en-US"
+                                    },
+                                    Value = "The Link4Vets Puppy Database"
+                                }
+                            }
+                        },
+                        Category = "Database",
+                        BaseUrl = "https://nestjes.link4vets.be",
+                        IsExternal = true,
+                    },
 
-            await context.Apps.AddRangeAsync(activities);
+                };
+
+                await context.Apps.AddRangeAsync(applications);
+            }
+
             await context.SaveChangesAsync();
         }
     }
